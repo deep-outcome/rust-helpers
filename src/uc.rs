@@ -14,7 +14,7 @@ where
 }
 
 #[cfg_attr(test, derive(Debug))]
-pub struct UC<T>(UnsafeCell<T>);
+pub struct UC<T>(pub UnsafeCell<T>);
 
 impl<T> UC<T> {
     pub const fn aq_ref(&self) -> &T {
