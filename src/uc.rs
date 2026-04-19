@@ -22,7 +22,7 @@ impl<T> UC<T> {
         unsafe { t.as_mut().unwrap_unchecked() }
     }
 
-    pub const fn promote(&self) -> &mut T {
+    pub const fn uplift(&self) -> &mut T {
         let t = self.0.get();
         unsafe { t.as_mut().unwrap_unchecked() }
     }
@@ -93,10 +93,10 @@ mod tests_of_units {
     }
 
     #[test]
-    fn promote() {
+    fn uplift() {
         let zero = &0usize as *const usize;
         let uc = UC::new(zero);
-        let test = uc.promote();
+        let test = uc.uplift();
 
         assert_eq!(zero as usize, *test as usize);
     }
@@ -124,4 +124,4 @@ mod tests_of_units {
     }
 }
 
-// cargo test --release
+// cargo fmt && cargo test --release
