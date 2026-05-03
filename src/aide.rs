@@ -1,3 +1,4 @@
+#![allow(dead_code)] // used by consumers
 use std::isize;
 
 pub fn address<T>(t: &T) -> usize {
