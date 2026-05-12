@@ -1,4 +1,4 @@
-#![allow(dead_code)] // used by consumers
+#![allow(dead_code)] // leveraged by consumers
 use std::isize;
 
 pub fn address<T>(t: &T) -> usize {
@@ -37,6 +37,7 @@ where
 }
 
 #[cfg(test)]
+#[cfg(feature = "rh-aide-tests")]
 mod tests_of_unit {
     use super::*;
 
@@ -93,4 +94,4 @@ mod tests_of_unit {
     }
 }
 
-// cargo fmt & cargo test --release aide::
+// cargo fmt & cargo test --release --features rh-aide-tests

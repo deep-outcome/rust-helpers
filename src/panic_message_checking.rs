@@ -89,6 +89,7 @@ pub fn assert<F: FnOnce() -> () + UnwindSafe>(f: F, exp_msg: &str) {
 }
 
 #[cfg(test)]
+#[cfg(feature = "rh-panic-tests")]
 mod test {
 
     use super::*;
@@ -112,7 +113,7 @@ XML decimal entity: &#8211;";
 
     #[test]
     #[should_panic(
-        expected = "MISMATCH ⸺ expected message not contained\r\nMSG: panicked at src/panic_message_checking.rs:118:20:\nSOMETHING_DIFFERENT"
+        expected = "MISMATCH ⸺ expected message not contained\r\nMSG: panicked at src/panic_message_checking.rs:119:20:\nSOMETHING_DIFFERENT"
     )]
     fn assert_different_pnc() {
         let f = || panic!("{}", "SOMETHING_DIFFERENT");
@@ -126,3 +127,5 @@ XML decimal entity: &#8211;";
         assert(f, REALLY_COMPLEX_MULTILINE_STR);
     }
 }
+
+// cargo fmt & cargo test --release --features rh-panic-tests

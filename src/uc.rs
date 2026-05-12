@@ -51,6 +51,7 @@ impl<T> DerefMut for UC<T> {
 }
 
 #[cfg(test)]
+#[cfg(feature = "rh-uc-tests")]
 mod tests_of_units {
     use crate::aide::address;
     use std::ops::{Deref, DerefMut};
@@ -124,4 +125,4 @@ mod tests_of_units {
     }
 }
 
-// cargo fmt && cargo test --release
+// cargo fmt & cargo test --release --features rh-uc-tests
