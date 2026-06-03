@@ -3,11 +3,11 @@
 use std::boxed::Box;
 use std::hint;
 use std::ops::Deref;
-use std::panic::{catch_unwind, UnwindSafe};
+use std::panic::{UnwindSafe, catch_unwind};
 use std::ptr::NonNull;
 use std::sync::{
-    atomic::{AtomicBool, AtomicPtr, Ordering},
     Arc,
+    atomic::{AtomicBool, AtomicPtr, Ordering},
 };
 
 static HOOK_GUARD: AtomicBool = AtomicBool::new(true);
