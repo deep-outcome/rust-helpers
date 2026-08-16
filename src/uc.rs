@@ -1,3 +1,5 @@
+#![allow(dead_code)]
+
 use std::{
     cell::UnsafeCell,
     ops::{Deref, DerefMut},
@@ -33,6 +35,10 @@ impl<T> UC<T> {
 
     pub const fn new(t: T) -> Self {
         Self(UnsafeCell::new(t))
+    }
+
+    pub fn uproot(self) -> T {
+        self.0.into_inner()
     }
 }
 
@@ -122,6 +128,18 @@ mod tests_of_units {
         let deref_add = address(uc.deref_mut());
 
         assert_eq!(aq_add, deref_add);
+    }
+
+    #[test]
+    fn uproot() {
+        let s = String::from("rooted");
+        let heap_add = s.as_ptr() as usize;
+
+        let uc = UC::new(s);
+        #[allow(dangling_pointers_from_temporaries)]
+        let test_add = uc.uproot().as_ptr() as usize;
+
+        assert_eq!(heap_add, test_add);
     }
 }
 
