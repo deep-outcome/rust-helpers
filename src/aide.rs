@@ -1,6 +1,4 @@
 #![allow(dead_code)] // leveraged by consumers
-use std::isize;
-
 pub fn address<T>(t: &T) -> usize {
     (t as *const T) as usize
 }
